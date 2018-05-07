@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lavandes de Provence || Galerie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" type="images/jpeg" href="images/lavande_icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/134921/foundation.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Dosis:700' rel='stylesheet' type='text/css'>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style type="text/css" media="screen">
+
+    body{
+      background-image: url('images/lavender-background.jpg');
+      background-size: 100% 100%; 
+      background-repeat: no-repeat;
+      background-position: center;
+      /*position: fixed;*/
+      background-attachment: fixed;
+      }
+
+
+    h1{
+      font-family: cursive;
+      color: white;
+      font-size: 60px;
+      /*padding-top: 20%;
+      padding-left: 20%;
+      padding-right: 20%;*/
+      margin-left: 2%;
+      }
+
+    
+    #toggle {
+      display: block;
+      width: 58px;
+      height: 70px;
+      padding-top: 60px;
+      margin-right: 40px;
+      float: right;
+      }
+
+    #toggle span:after,
+    #toggle span:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -9px;
+      }
+    #toggle span:after{
+      top: 9px;
+      }
+    #toggle span {
+      position: relative;
+      display: block;
+      }
+
+    #toggle span,
+    #toggle span:after,
+    #toggle span:before {
+      width: 100%;
+      height: 5px;
+      background-color: white;
+      transition: all 0.3s;
+      backface-visibility: hidden;
+      border-radius: 2px;
+      }   
+
+    /* on activation */
+    #toggle.on span {
+      background-color: transparent;
+      }
+    #toggle.on span:before {
+      transform: rotate(45deg) translate(5px, 5px);
+      }
+    #toggle.on span:after {
+      transform: rotate(-45deg) translate(7px, -8px);
+      }
+    #toggle.on + #menu {
+      opacity: 1;
+      visibility: visible;
+      }
+
+    /* menu appearance*/
+    #menu {
+      position: relative;
+      color: #999;
+      width: 200px;
+      padding: 10px;
+      margin: auto;
+      font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+      text-align: center;
+      border-radius: 4px;
+      background: transparent;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      /* just for this demo */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .4s;
+      float: right;
+      margin-top: 5%;
+      margin-right: 0%;
+      font-size: 24px;
+      }
+
+      
+    ul, li, li a {
+      list-style: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+      }
+    li a {
+      padding: 5px;
+      color: white;
+      text-decoration: none;
+      transition: all .2s;
+      }
+    li a:hover,
+    li a:focus {
+      color: #fff;
+      font-weight: bold;
+      font-size: 24px;
+      }
+
+
+
+    /* demo styles */
+    
+    p, p a { 
+      font-size: 12px;
+      text-align: center; 
+      color: #888; 
+      }
+  
+
+/*CAROUSEL start*/
+
+
+    .carousel-wrapper{
+      height:45%;
+      position:relative;
+      width:55%;
+      margin:0 auto;
+      }
+    .carousel-item{
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      padding:25px 50px;
+      opacity:0;
+      transition: all 0.5s ease-in-out;
+      }
+    .arrow{
+      position:absolute;
+      top:0;
+      display:block;
+      width:50px;
+      height:100%;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      background: url("http://dancort.es/assets/img/css-carousel/carousel-arrow-dark.png") 50% 50% / 20px no-repeat;
+      }
+
+    .arrow-prev{
+      left:0;
+      }
+     
+    .arrow-next{
+      right:0;
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      }
+
+    .light{
+      color:white;
+      }
+
+    @media (max-width: 480px) {
+          .arrow, .light .arrow {
+            background-size: 10px;
+            background-position: 10px 50%;
+          }
+        }
+
+
+    /*Select every element*/
+    [id^="item"] {
+        display: none;
+      }
+
+    .item-1 {
+      z-index: 2;
+      opacity: 1;
+      background:url('images/lavande1.jpg');
+      background-size:cover;
+      box-shadow: 5px 10px gray;
+      border-radius: 5px;
+      }
+
+    .item-2{
+      background:url('images/lavande2.png');
+      background-size:cover;
+      box-shadow: 5px 10px gray;
+      border-radius: 5px;
+      }
+    .item-3{
+      background:url('images/lavande3.jpeg');
+      background-size:cover;
+      box-shadow: 5px 10px gray;
+      border-radius: 5px;
+      }
+
+    *:target ~ .item-1 {
+      opacity: 0;
+      }
+
+    #item-1:target ~ .item-1 {
+      opacity: 1;
+      }
+
+    #item-2:target ~ .item-2, #item-3:target ~ .item-3 {
+      z-index: 3;
+      opacity: 1;
+      }
+    /*CAROUSEL ende*/ 
+  </style>
+  
+</head>
+
+<body>
+  <div class="preloader-wrap">
+    <div class="percentage" id="precent"></div>
+    <div class="loader">
+      <div class="trackbar">
+        <div class="loadbar"></div>
+      </div>
+      <div class="glow"></div>
+    </div>
+  </div>
+
+  <a href="#menu" id="toggle"><span></span></a>
+
+  <div id="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+    </ul>
+  </div>
+
+  <h1>Galerie</h1>
+
+  <div class="carousel-wrapper">
+    <span id="item-1"></span>
+    <span id="item-2"></span>
+    <span id="item-3"></span>
+      <div class="carousel-item item-1">
+        <h2>Item 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus   accumsan pretium dolor vel convallis. Aliquam erat volutpat. Maecenas lacus nunc, imperdiet sed mi et, finibus suscipit mi.</p>
+        <a class="arrow arrow-prev" href="#item-3"></a>
+        <a class="arrow arrow-next" href="#item-2"></a>
+      </div>
+    
+      <div class="carousel-item item-2">
+        <h2>Item 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan pretium dolor vel convallis. Aliquam erat volutpat.</p>
+        <a class="arrow arrow-prev" href="#item-1"></a>
+        <a class="arrow arrow-next" href="#item-3"></a>
+      </div>
+    
+      <div class="carousel-item item-3">
+        <h2>Item 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan pretium dolor vel convallis. Aliquam erat volutpat.</p>
+        <a class="arrow arrow-prev" href="#item-2"></a>
+        <a class="arrow arrow-next" href="#item-1"></a>
+      </div>
+  </div>
+
+  
+<!--*******************************************************
+      *                                                     *
+      *               Toogle NAVBAR                         *
+      *                                                     *
+      *******************************************************-->
+  <script>
+         var theToggle = document.getElementById('toggle');
+
+      // based on Todd Motto functions
+      // https://toddmotto.com/labs/reusable-js/
+
+      // hasClass
+      function hasClass(elem, className) {
+        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+      }
+      // addClass
+      function addClass(elem, className) {
+          if (!hasClass(elem, className)) {
+            elem.className += ' ' + className;
+          }
+      }
+      // removeClass
+      function removeClass(elem, className) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+        if (hasClass(elem, className)) {
+              while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+                  newClass = newClass.replace(' ' + className + ' ', ' ');
+              }
+              elem.className = newClass.replace(/^\s+|\s+$/g, '');
+          }
+      }
+      // toggleClass
+      function toggleClass(elem, className) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+          if (hasClass(elem, className)) {
+              while (newClass.indexOf(" " + className + " ") >= 0 ) {
+                  newClass = newClass.replace( " " + className + " " , " " );
+              }
+              elem.className = newClass.replace(/^\s+|\s+$/g, '');
+          } else {
+              elem.className += ' ' + className;
+          }
+      }
+
+      theToggle.onclick = function() {
+         toggleClass(this, 'on');
+         return false;
+      } 
+  </script>
+
+  
+
+  <!--*******************************************************
+      *                                                     *
+      *               upload PROGRESS BAR                   *
+      *                                                     *
+      *******************************************************-->
+  <script>
+          var loaderTemplate =  '<div class="preloader-wrap">'+
+                                '<div class="percentage" id="percent"></div>'+
+                                '<div class="loader">'+
+                                '<div class="trackbar">'+
+                                '<div class="loadbar"></div>'+
+                                '</div>'+
+                                '<div class="glow"></div>'+
+                                '</div>'+
+                                '</div>';
+
+          $('body').append(loaderTemplate);
+  
+
+          var width = 100,
+              perfData = window.performance.timing, // The PerformanceTiming interface represents timing-related performance information for the given page.
+              EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart),
+              time = parseInt((EstimatedTime/1000)%60)*100;
+          console.log('EstimatedTime === '+EstimatedTime);
+
+
+          // Loadbar Animation
+          $(".loadbar").animate({
+            width: width + "%"
+          }, time);
+
+          // Loadbar Glow Animation
+          $(".glow").animate({
+            width: width + "%"
+          }, time);
+
+          // Percentage Increment Animation
+          var PercentageID = $("#percent"),
+              start = 0,
+              end = 100,
+              durataion = time;
+              animateValue(PercentageID, start, end, durataion);
+    
+          function animateValue(id, start, end, duration) {
+            
+            var range = end - start,
+                current = start,
+                increment = end > start? 1 : -1,
+                stepTime = Math.abs(Math.floor(duration / range)),
+                obj = $(id);
+              
+            var timer = setInterval(function() {
+              current += increment;
+              $(obj).text(current + "%");
+                //obj.innerHTML = current;
+              if (current == end) {
+                clearInterval(timer);
+              }
+            }, stepTime);
+          }
+
+          // Fading Out Loadbar on Finised
+          setTimeout(function(){
+            $('.preloader-wrap').fadeOut(300);
+          }, time);
+  </script>
+</body>
+</html>

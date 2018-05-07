@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Lavandes de Provence || Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" type="images/jpeg" href="images/lavande_icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/134921/foundation.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Dosis:700' rel='stylesheet' type='text/css'>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style type="text/css" media="screen">
+
+    body{
+      background-image: url('images/lavender-background.jpg');
+      background-size: 100% 100%; 
+      background-repeat: no-repeat;
+      background-position: center;
+      /*position: fixed;*/
+      background-attachment: fixed;
+      }
+    
+    #toggle {
+      display: block;
+      width: 58px;
+      height: 70px;
+      padding-top: 60px;
+      margin-right: 40px;
+      float: right;
+      }
+
+    #toggle span:after,
+    #toggle span:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -9px;
+      }
+    #toggle span:after{
+      top: 9px;
+      }
+    #toggle span {
+      position: relative;
+      display: block;
+      }
+
+    #toggle span,
+    #toggle span:after,
+    #toggle span:before {
+      width: 100%;
+      height: 5px;
+      background-color: white;
+      transition: all 0.3s;
+      backface-visibility: hidden;
+      border-radius: 2px;
+      }   
+
+    /* on activation */
+    #toggle.on span {
+      background-color: transparent;
+      }
+    #toggle.on span:before {
+      transform: rotate(45deg) translate(5px, 5px);
+      }
+    #toggle.on span:after {
+      transform: rotate(-45deg) translate(7px, -8px);
+      }
+    #toggle.on + #menu {
+      opacity: 1;
+      visibility: visible;
+      }
+
+    /* menu appearance*/
+    #menu {
+      position: relative;
+      color: #999;
+      width: 200px;
+      padding: 10px;
+      margin: auto;
+      font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+      text-align: center;
+      border-radius: 4px;
+      background: transparent;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      /* just for this demo */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .4s;
+      float: right;
+      margin-top: 5%;
+      margin-right: 0%;
+      font-size: 24px;
+      }
+
+      
+    ul, li, li a {
+      list-style: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+      }
+    li a {
+      padding: 5px;
+      color: white;
+      text-decoration: none;
+      transition: all .2s;
+      }
+    li a:hover,
+    li a:focus {
+      color: #fff;
+      font-weight: bold;
+      font-size: 24px;
+      }
+
+
+
+    /* demo styles */
+    
+    p, p a { 
+      font-size: 12px;
+      text-align: center; 
+      color: #888; 
+      }
+
+   
+
+
+
+/********* CONTACT FORM *********/
+    @import url("https://fonts.googleapis.com/css?family=Baloo");
+    @import url("https://fonts.googleapis.com/css?family=Montserrat");
+    @import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+    /* scss variables */
+    /* Lazy reset */
+    *,
+    *:after,
+    *:before {
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+    button {
+      cursor: pointer;
+      font-family: 'Indie Flower', cursive;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      letter-spacing: 2px;
+      transition: all 0.1s ease-in;
+    }
+
+    #contact-button {
+      background-color: #373737;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+      border-bottom: 4px solid #272727;
+      color: white;
+      height: 55px;
+      width: 180px;
+      transition: transform 0.5s ease-in;
+    }
+
+    #contact-button:active,
+    #submit:active {
+      border-bottom-width: 0px;
+      margin-top: 4px;
+    }
+
+    #contact-button:focus,
+    #submit:focus {
+      outline: 0;
+    }
+
+    #contact-button.grow {
+      border: 0;
+      transform: scale(3, 8);
+    }
+
+    #contact-form {
+      background-color: #373737;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 430px;
+      width: 540px;
+      max-width: 100%;
+    }
+
+    #contact-form h1 {
+      color: white;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    #contact-form .form-control {
+      margin: 10px 0;
+      width: 300px;
+    }
+
+    #contact-form .form-items {
+      height: 150px;
+    }
+
+    #contact-form .button-holders {
+      text-align: center;
+      transition: width 0.3s ease-in-out;
+      z-index: 2;
+    }
+
+    #contact-form .button-holders,
+    #contact-form input {
+      background-color: #C0B283;
+      color: white;
+      cursor: text;
+      display: block;
+      font-size: 14px;
+      font-family: inherit;
+      padding: 10px;
+      position: relative;
+      top: 0;
+      width: 100%;
+      height: 40px;
+    }
+
+    #contact-form input {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 80px;
+      margin-bottom: -40px;
+      width: calc(100% - 80px);
+      top: -40px;
+    }
+
+    #contact-form input:focus {
+      outline: 0;
+    }
+
+    #contact-form #success-msg {
+      display: flex;
+      background-color: #373737;
+      padding: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: transform 1s ease-in-out;
+      z-index: 5;
+    }
+
+    #contact-form #success-msg.grow {
+      transform: scale(1);
+    }
+
+    #submit {
+      background-color: #C0B283;
+      border-bottom: 4px solid #A7996A;
+      color: white;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    #submit:active {
+      margin-top: 19px;
+    }
+
+    #contact-form .loader {
+      background-color: #C0B283;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+
+    /* First loader */
+    #contact-form .form-control:nth-of-type(1) .loader {
+      top: 50px;
+      left: calc(50% - 20px - 40px - 10px);
+      animation: shrink 1.5s ease-in-out, moveToPosition1 1s ease-in-out 1.5s, loading1 1s ease-in-out 2.5s infinite;
+    }
+
+    /* Second loader */
+    #contact-form .form-control:nth-of-type(2) .loader {
+      left: calc(50% - 20px);
+      animation: shrink 1.5s ease-in-out, moveToPosition2 1s ease-in-out 1.5s, loading2 1s ease-in-out 2.8s infinite;
+    }
+
+    /* Third loader */
+    #contact-form .form-control:nth-of-type(3) .loader {
+      top: -50px;
+      left: calc(50% - 20px + 40px + 10px);
+      animation: shrink 1.5s ease-in-out, moveToPosition3 1s ease-in-out 1.5s, loading3 1s ease-in-out 3.1s infinite;
+    }
+
+    @keyframes shrink {
+      0% {
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      50% {
+        border-radius: 0;
+        left: 0;
+        width: 40px;
+      }
+      100% {
+        top: 0;
+        border-radius: 50%;
+        left: calc(50% - 20px);
+      }
+    }
+    @keyframes moveToPosition1 {
+      0% {
+        left: calc(50% - 20px);
+        top: 0;
+      }
+      100% {
+        top: 50px;
+        left: calc(50% - 20px - 40px - 10px);
+      }
+    }
+    @keyframes loading1 {
+      0% {
+        top: 50px;
+      }
+      50% {
+        top: 10px;
+      }
+      100% {
+        top: 50px;
+      }
+    }
+    @keyframes moveToPosition2 {
+      0% {
+        left: calc(50% - 20px);
+      }
+      100% {
+        left: calc(50% - 20px);
+      }
+    }
+    @keyframes loading2 {
+      0% {
+        top: 0px;
+      }
+      50% {
+        top: -40px;
+      }
+      100% {
+        top: 0px;
+      }
+    }
+    @keyframes moveToPosition3 {
+      0% {
+        left: calc(50% - 20px);
+        top: 0;
+      }
+      100% {
+        top: -50px;
+        left: calc(50% - 20px + 40px + 10px);
+      }
+    }
+    @keyframes loading3 {
+      0% {
+        top: -50px;
+      }
+      50% {
+        top: -90px;
+      }
+      100% {
+        top: -50px;
+      }
+    }
+
+
+
+    #contactForm{
+      padding-top: 10%;
+      }
+  </style>
+  
+</head>
+
+<body>
+
+  <!--upload Progress Bar-->
+  <div class="preloader-wrap">
+    <div class="percentage" id="precent"></div>
+    <div class="loader">
+      <div class="trackbar">
+        <div class="loadbar"></div>
+      </div>
+      <div class="glow"></div>
+    </div>
+  </div>
+
+  <!--Toggle Navbar-->
+  <a href="#menu" id="toggle"><span></span></a>
+
+  <div id="menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+    </ul>
+  </div>
+
+ 
+
+
+  <!--Contact Form-->
+  <div id="contactForm">
+    <button id="contact-button">Contact me!</button>
+    <div id="contact-form" class="form-container">
+      <form id="form">
+        <h1>Contact me</h1>
+        <div class="form-items">
+          <div class="form-control">
+            <div class="button-holders">Name</div>
+            <input type="text" name="name" autocomplete="off"/>
+          </div>
+          <div class="form-control">
+            <div class="button-holders">Email</div>
+            <input type="text" name="email" autocomplete="off"/>
+          </div>
+          <div class="form-control">
+            <div class="button-holders">Message</div>
+            <input type="text" name="message" autocomplete="off"/>
+          </div>
+        </div>
+        <button id="submit" type="submit">Send</button>
+      </form>
+      <h1 id="success-msg">Thank you for your message! We'll get back to you soon.</h1>
+    </div>
+  </div>
+
+
+<!--*******************************************************
+      *                                                     *
+      *               Toogle NAVBAR                         *
+      *                                                     *
+      *******************************************************-->
+  <script>
+         var theToggle = document.getElementById('toggle');
+
+      // based on Todd Motto functions
+      // https://toddmotto.com/labs/reusable-js/
+
+      // hasClass
+      function hasClass(elem, className) {
+        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+      }
+      // addClass
+      function addClass(elem, className) {
+          if (!hasClass(elem, className)) {
+            elem.className += ' ' + className;
+          }
+      }
+      // removeClass
+      function removeClass(elem, className) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+        if (hasClass(elem, className)) {
+              while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+                  newClass = newClass.replace(' ' + className + ' ', ' ');
+              }
+              elem.className = newClass.replace(/^\s+|\s+$/g, '');
+          }
+      }
+      // toggleClass
+      function toggleClass(elem, className) {
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+          if (hasClass(elem, className)) {
+              while (newClass.indexOf(" " + className + " ") >= 0 ) {
+                  newClass = newClass.replace( " " + className + " " , " " );
+              }
+              elem.className = newClass.replace(/^\s+|\s+$/g, '');
+          } else {
+              elem.className += ' ' + className;
+          }
+      }
+
+      theToggle.onclick = function() {
+         toggleClass(this, 'on');
+         return false;
+      } 
+  </script>
+
+  
+
+  <!--*******************************************************
+      *                                                     *
+      *               upload PROGRESS BAR                   *
+      *                                                     *
+      *******************************************************-->
+  <script>
+          var loaderTemplate =  '<div class="preloader-wrap">'+
+                                '<div class="percentage" id="percent"></div>'+
+                                '<div class="loader">'+
+                                '<div class="trackbar">'+
+                                '<div class="loadbar"></div>'+
+                                '</div>'+
+                                '<div class="glow"></div>'+
+                                '</div>'+
+                                '</div>';
+
+          $('body').append(loaderTemplate);
+  
+
+          var width = 100,
+              perfData = window.performance.timing, // The PerformanceTiming interface represents timing-related performance information for the given page.
+              EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart),
+              time = parseInt((EstimatedTime/1000)%60)*100;
+          console.log('EstimatedTime === '+EstimatedTime);
+
+
+          // Loadbar Animation
+          $(".loadbar").animate({
+            width: width + "%"
+          }, time);
+
+          // Loadbar Glow Animation
+          $(".glow").animate({
+            width: width + "%"
+          }, time);
+
+          // Percentage Increment Animation
+          var PercentageID = $("#percent"),
+              start = 0,
+              end = 100,
+              durataion = time;
+              animateValue(PercentageID, start, end, durataion);
+    
+          function animateValue(id, start, end, duration) {
+            
+            var range = end - start,
+                current = start,
+                increment = end > start? 1 : -1,
+                stepTime = Math.abs(Math.floor(duration / range)),
+                obj = $(id);
+              
+            var timer = setInterval(function() {
+              current += increment;
+              $(obj).text(current + "%");
+                //obj.innerHTML = current;
+              if (current == end) {
+                clearInterval(timer);
+              }
+            }, stepTime);
+          }
+
+          // Fading Out Loadbar on Finised
+          setTimeout(function(){
+            $('.preloader-wrap').fadeOut(300);
+          }, time);
+  </script>
+
+  
+  
+  <!--*******************************************************
+      *                                                     *
+      *               CONTACT FORM                          *
+      *                                                     *
+      *******************************************************-->
+
+  <script>
+    /*/Still need to add:
+      -form validation
+      -fix send button
+      -fix middle close
+      -open on one click?
+      -fix nudge after opening
+      -rework form color scheme
+  */
+  // window.alert("sometext");
+         var C = $('#container'),
+            A = $('#open'),
+            L = $('#letter'),
+             B = $('.button.con'),
+           H = $('#letter hgroup h2'),
+             F = $('.front'),
+             W = $('#wrapper'),
+            P = $('#perspective'),
+             closed = true;
+  $(function() {
+    // Handler for .ready() called.
+    $("textarea").text("");
+  });
+    
+     F.click(function(){
+          C.css({
+            'transition':'all 1s',
+            'transform':'rotateY(180deg)',
+          });
+          A.css({
+            'transition':'all 1s .5s',
+            'transform':'rotateX(180deg)',
+            'z-index': '0'
+          });
+          W.css({
+               'visibility':'visible'
+          });
+      });
+
+        // open/close and spin
+      W.click(function() {
+        var message =$.trim($('textarea').val());
+        if (message.length > 0) {//they wrote something in the message
+        var r=confirm("You have not sent your message, would you still like to close the form?");
+        if (r==false)//they don't want to close
+        {
+          return;
+        }
+        else //they do want to close. clear message
+        {
+       document.getElementById("myform").reset();
+        }
+       }
+           if(closed===false){
+           L.css({
+            'transition':'all .7s',
+            'top':'3px',
+            'height':'200px'
+          });
+          P.css({
+            'transform':'translateY(0px)'
+          });
+          F.css({
+            'transform':'rotateZ(0deg)'
+          }); 
+          H.css({
+            'transition':'all .5s',
+            'transform':'rotateZ(0deg)'
+          });
+          C.css({
+            'transition':'all 1.2s .95s'
+          });
+          A.css({
+            'transition':'all 1.2s .7s'
+          });
+          H.css({
+            'transition':'all .5s'
+          });
+             document.getElementById("info").innerHTML = "P:123.456.7890";
+            closed=true;
+          }
+          else{
+          C.css({
+            'transition':'all 1s .5s',
+          });
+          A.css({
+            'transition':'all .5s',
+          });  
+            closed=false;
+          }
+          C.css({
+            'transform':'rotateY(0deg) rotate(3deg)'
+          });
+          A.css({
+            'transform':'rotateX(0deg)',
+            'z-index': '10'
+          });  
+          W.css({
+              //'transition':'all .5s',
+               'visibility':'hidden'
+          }); 
+        });
+        // Open letter
+       B.click(function() {
+   
+          L.css({
+            'transition':'all .5s 1s',
+            'top':'-600px',
+            'height':'550px'
+          });
+          P.css({
+            'transition':'all 1s',
+            'transform':'translateY(450px)'
+          });
+          H.css({
+            'transition':'all 1s',
+            'transform':'rotateZ(180deg)'
+          });
+           document.getElementById("info").innerHTML = "Contact Me!";
+        });
+  </script>
+
+
+
+
+  <script>
+        /* Contact button, form, submit button */
+      var ct_btn = document.getElementById('contact-button');
+
+      var ct_form = document.getElementById('contact-form');
+
+      /* Button holders */
+      var btn_holders = document.querySelectorAll('#contact-form .button-holders');
+
+      /* The inputs */
+      var inputs = document.querySelectorAll('#contact-form .form-control input');
+
+      /* The form */
+      var form = document.getElementById('form');
+
+      /* Success message */
+      var success_msg = document.getElementById('success-msg');
+
+      /* h1 and submit button of the form */
+      var h1 = document.querySelectorAll('#form h1')[0];
+      var submit = document.getElementById('submit');
+
+      /* start animation on ct_btn click by adding the grow class */
+
+      ct_btn.onclick = function() {
+        this.innerHTML = '';
+        this.className = 'grow';
+      }
+
+      /* add transitionend event for the button to show form */
+      ct_btn.addEventListener('transitionend', function(){
+        this.style.display = 'none';
+        ct_form.style.display = 'flex';
+      });
+
+      /* Shrink the button holders on click and reveal the input behind it */
+      btn_holders.forEach(btn => {
+        btn.addEventListener('click', function(){
+          btn.innerHTML += ':';
+          btn.style.width = '80px';
+          btn.parentNode.childNodes[3].focus();
+        })
+      });
+
+      /* Submit form */
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        var allRight = true;
+        
+        // Go through all inputs
+        inputs.forEach(input => {
+          
+          // If an input is empty, don't allow to continue
+          if(input.value === ''){
+            allRight = false;
+          }
+        });
+        
+        
+        // Only continue if every input is filled
+        if(allRight) {
+          
+          // hide title and button
+          h1.style.display = 'none';
+          submit.style.display = 'none';
+          
+          inputs.forEach(input => {
+            input.style.display = 'none';
+          });
+          
+          btn_holders.forEach(btn => {
+            btn.innerHTML = '';
+            btn.style.width = '40px';
+            btn.className = 'loader';
+          });
+          
+          // after 6 seconds show to complete message
+          setTimeout(function(){
+            success_msg.className = 'grow';
+            form.style.display = 'none';
+          }, 6000);
+          
+        } else {
+          alert('Please make sure to fill all the inputs!');
+        }
+      });
+  </script>
+
+</body>
+</html>
