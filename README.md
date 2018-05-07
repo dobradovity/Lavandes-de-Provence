@@ -1,2 +1,2 @@
 # Lavandes-de-Provence
-Progress Bar und Carouse
+Progress Bar und Carousel
